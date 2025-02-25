@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             id="Definitions_1"
+             targetNamespace="http://bpmn.io/schema/bpmn">
+
+    <process id="Process_1" isExecutable="true">
+        <!-- Start Event -->
+        <startEvent id="StartEvent_1" name="Start" />
+
+        <!-- Task 1 -->
+        <sequenceFlow id="Flow_1" sourceRef="StartEvent_1" targetRef="Task_1" />
+        <task id="Task_1" name="Task 1" />
+
+        <!-- Exclusive Gateway (Decision) -->
+        <sequenceFlow id="Flow_2" sourceRef="Task_1" targetRef="ExclusiveGateway_1" />
+        <exclusiveGateway id="ExclusiveGateway_1" name="Decision" />
+
+        <!-- Task 2 -->
+        <sequenceFlow id="Flow_3" sourceRef="ExclusiveGateway_1" targetRef="Task_2">
+            <conditionExpression xsi:type="tFormalExpression">${condition == 'true'}</conditionExpression>
+        </sequenceFlow>
+        <task id="Task_2" name="Task 2" />
+
+        <!-- Task 3 -->
+        <sequenceFlow id="Flow_4" sourceRef="ExclusiveGateway_1" targetRef="Task_3">
+            <conditionExpression xsi:type="tFormalExpression">${condition != 'true'}</conditionExpression>
+        </sequenceFlow>
+        <task id="Task_3" name="Task 3" />
+
+        <!-- End Event -->
+        <sequenceFlow id="Flow_5" sourceRef="Task_2" targetRef="EndEvent_1" />
+        <sequenceFlow id="Flow_6" sourceRef="Task_3" targetRef="EndEvent_1" />
+        <endEvent id="EndEvent_1" name="End" />
+    </process>
+
+</definitions>

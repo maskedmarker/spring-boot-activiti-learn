@@ -11,6 +11,9 @@
 
     <artifactId>ch03-activiti-boot</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>ch031-hello-boot-activiti</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
