@@ -11,8 +11,8 @@ public class ActivitiService {
     @Autowired
     private RuntimeService runtimeService;
 
-    public void startProcess() {
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("Process_1");
+    public void startProcess(String processDefinitionKey) {
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(processDefinitionKey);
         System.out.println("Started process instance with ID: " + processInstance.getId());
     }
 }
